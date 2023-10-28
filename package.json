@@ -1,6 +1,6 @@
 {
+  "name": "aoc2021",
   "scripts": {
-
     "test": "mocha -r ts-node/register/transpile-only"
   },
   "dependencies": {
