@@ -34,16 +34,15 @@ export function initMatrix(): Matrix {
   return matrix
 }
 
-export function drawVents(v: Vent[], matrix: Matrix, part2: boolean): Matrix {
+export function drawVents(v: Vent[], matrix: Matrix, vertricalLines: boolean): Matrix {
   let directionX = 1
   let directionY = 1
   for (const vent of v) {
-    if (!part2 && vent.x1 !== vent.x2 && vent.y1 !== vent.y2) {
+    if (!vertricalLines && vent.x1 !== vent.x2 && vent.y1 !== vent.y2) {
       continue
     }
     directionX = vent.x1 > vent.x2 ? -1 : 1
     directionY = vent.y1 > vent.y2 ? -1 : 1
-    console.log('draw vent', vent)
     let posX = vent.x1
     let posY = vent.y1
     while (true) {
@@ -71,5 +70,7 @@ export function countOverlaps(m: Matrix): number {
   return count
 }
 
-const filledMatrix = drawVents(readFile().map(parse), initMatrix(), false);
-console.log('count overlaps:', countOverlaps(filledMatrix))
+const part1Matrix = drawVents(readFile().map(parse), initMatrix(), false);
+console.log('part 1:', countOverlaps(part1Matrix))
+const part2Matrix = drawVents(readFile().map(parse), initMatrix(), true);
+console.log('part 2:', countOverlaps(part2Matrix))
